@@ -10,8 +10,8 @@ import { extendTheme } from "native-base";
   
     colors: {
       light: 'rgba(217, 236, 242, 1)',
-      box: "rgba(0, 45, 64, 1)",
-      primery: "002D40",
+      box: 'rgba(255, 77, 96, 0.1)',
+      primery: "rgba(0, 45, 64, 1)",
       secoundery: "1AA687",
       textMute: "D9ECF2",
       disabled: "D9ECF2",
@@ -36,24 +36,27 @@ import { extendTheme } from "native-base";
     },
 
     components: {
-      Button: {
-        baseStyle: {
-          colorScheme: "1AA687",
-        },
-      },
       Text: {
         baseStyle: {
-          color:'light',
           fontFamily: "body",
           fontWeight: '400',
           fontSize: "16px",
         },
+        defaultProps:{
+          color:'light',
+        }
       },
       VStack:{
         baseStyle: {
-          backgroundColor : 'box',
           w : '100%', 
+        },
+        defaultProps: {
+          borderRadius: 10,
+          space: '5'
+          
         }
-      }
+      },
+      
     },
+    
   });
