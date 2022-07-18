@@ -1,5 +1,5 @@
 import * as React from "react";
-import { VStack, Center, FlatList, HStack, Box, Text } from "native-base";
+import { VStack, Center, FlatList, HStack, Box, Text, Pressable } from "native-base";
 import { List } from "react-native-paper";
 import GridFlatList from "grid-flatlist-react-native";
 
@@ -129,23 +129,11 @@ const projects = [
   },
 ];
 
-function ProjectBox(item) {
-  return (
-    <Box
-      backgroundColor="box"
-      flex={1 / 2}
-      height={"200"}
-      borderRadius={10}
-      padding={"20px"}
-    >
-      {item.name}
-    </Box>
-  );
-}
+
 
 function HomeMain() {
   return (
-    <VStack alignItems={"center"} space={"30px"} flex="1">
+    <VStack alignItems={"center"} space={"30px"}  flex="1">
       <Top />
       <VStack space={"20px"}>
         <List.Accordion
@@ -214,10 +202,23 @@ function HomeMain() {
   );
 }
 
-function HomeScreen() {
-  const [expanded, setExpanded] = React.useState(true);
+function HomeScreen({navigation}) {
 
-  const handlePress = () => setExpanded(!expanded);
+  function ProjectBox(item) {
+    return (
+      <Pressable
+        backgroundColor="box"
+        flex={1 / 2}
+        height={230}
+        borderRadius={10}
+        padding={5}
+        onPress={()=>navigation.push('projectDetail')}
+      >
+        <Text>{item.name}</Text>
+      </Pressable>
+    );
+  }
+
   return (
     <GridFlatList
       w="100%"
@@ -226,7 +227,7 @@ function HomeScreen() {
       renderItem={ProjectBox}
       paddingTop={20}
       keyExtractor={(item) => item.id}
-      paddingHorizontal={10}
+      paddingHorizontal={20}
       ListHeaderComponent={HomeMain}
       backgroundColor={"rgba(0, 45, 64, 1)"}
     />
